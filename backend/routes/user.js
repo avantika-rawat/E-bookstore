@@ -99,7 +99,21 @@ router.get("/get-user-information", authenticationToken, async(req,res)=>{
     }catch(error){
      res.status(500).json({message : "Internal server error"});
     }
-})
+});
+
+//update address
+router.put("/update-address", authenticationToken, async(req,res) =>{
+    try{
+const {bookid} = req.headers;
+const {address}= req.body;
+await User.findByIdAndUpdate(bookid,{address : address});
+return res.status(200).json({message : "Address update successfully"});
+
+    } catch(error){
+        res.status(500).json({message : "Internal server error"});
+
+    }
+});
 
 
 
