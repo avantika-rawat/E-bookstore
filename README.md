@@ -1,2 +1,3 @@
-# E-bookstore
-E-Bookstore is a full-stack web application built using MongoDB, Express.js, React.js, and Node.js. This application allows users to browse, search, add, update, and delete books while ensuring user authentication and authorization.
+#  BookCove : A E-bookstore
+
+![Screenshot (534)](https://github.com/user-attachments/assets/a90f992f-eb3c-4260-94e9-70f361946e4b)
