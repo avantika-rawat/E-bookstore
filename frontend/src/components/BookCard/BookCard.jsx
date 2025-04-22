@@ -1,0 +1,49 @@
+/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+const BookCard = ({ data, favourite }) => {
+  const headers = {
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    id: localStorage.getItem("id"),
+    bookid: data._id,
+  };
+  const handleRemoveBook = async () => {
+    const response = await axios.put(
+      `http://localhost:1000/api/v1/remove-book-from-favourite/${data._id}`,
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
+  return (
+    <>
+      <div className="bg-darkbrown rounded p-4 flex flex-col">
+        <Link to={`/view-book-details/${data._id}`}>
+          <div className="bg-beige w-full flex items-center justify-center">
+            <img src={data.url} alt="/" className="h-[20vh] bg-beige  " />
+          </div>
+          <div className="">
+            <div className="bg-zinc-500 rounded flex items-center justify-center"></div>
+            <h2 className="mt-4 text-xl text-white font-bold ">{data.title}</h2>
+            <p className="mt-2 text-white font-semibold">by {data.author}</p>
+            <p className="mt-2 text-white font-semibold">
+              {"\u20B9"}
+              {data.price}
+            </p>
+          </div>
+        </Link>
+        {favourite && (
+          <button
+            onClick={handleRemoveBook}
+            className="bg-beige font-semibold mt-2 p-1 rounded border text-black"
+          >
+            Remove from favourites
+          </button>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default BookCard;

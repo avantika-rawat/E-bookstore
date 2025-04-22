@@ -1,50 +1,55 @@
 const mongoose = require("mongoose");
 
-const user = new mongoose.Schema({
-    username : {
-        type : String,
-        required : true,
-        unique : true,
+const user = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    email : {
-        type : String,
-        required : true,
-        unique : true,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-   password : {
-        type : String,
-        required : true,
+    password: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+      default: "",
+    },
+    role: {
+      type: String,
+      default: "user",
+      enum: ["user", "admin"],
+    },
+    favourites: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Book",
+      },
+    ],
+    cart: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Book",
+      },
+    ],
 
-    },
-    address : {
-        type : String,
-        required : true,
-        
-    },
-   avatar : {
-        type : String,
-       default : ""
-    },
-    role : {
-        type : String,
-        default : "user",
-        enum : ["user", "admin"], },
-        favourites: [{
-            type : mongoose.Types.ObjectId,
-            ref : "books", 
-
-        },],
-        cart : [{
-            type: mongoose.Types.ObjectId,
-        },],
-
-        orders:[{
-            type:mongoose.Types.ObjectId,
-            ref:"books"
-        },],
-
-        
-},
-{timestamps : true});
+    orders: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "books",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("user", user);
