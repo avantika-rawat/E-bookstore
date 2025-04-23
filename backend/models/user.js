@@ -45,7 +45,7 @@ const user = new mongoose.Schema(
     orders: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "books",
+        ref: "Order",
       },
     ],
   },

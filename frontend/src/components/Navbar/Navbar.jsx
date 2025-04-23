@@ -9,12 +9,22 @@ const Navbar = () => {
     { title: "All Books", link: "/all-books" },
     { title: "Cart", link: "/cart" },
     { title: "Profile", link: "/profile" },
+    { title: "Admin Profile", link: "/profile" },
   ];
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
 
   if (!isLoggedIn) {
     links.splice(2, 2); // Remove Cart and Profile if not logged in
+  }
+
+  if (isLoggedIn == true && role === "user") {
+    links.splice(4, 1);
+  }
+
+  if (isLoggedIn == true && role === "admin") {
+    links.splice(3, 1);
   }
 
   const [MobileNav, setMobileNav] = useState("hidden");
@@ -36,6 +46,10 @@ const Navbar = () => {
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className="hidden md:flex gap-4">
             {links.map((item, i) => (
+              <div> 
+                {item.title === "Profile" || item.title === "Admin Profile" ?(
+            
+
               <Link
                 to={item.link}
                 className="hover:text-blue-500 transition-all duration-300"
@@ -43,7 +57,14 @@ const Navbar = () => {
               >
                 {item.title}
               </Link>
-            ))}
+            ): <Link to={item.link}>
+            
+            className= ""
+            key={i}
+            </Link>
+            
+            
+            )}
           </div>
 
           <div className="hidden md:flex gap-4">

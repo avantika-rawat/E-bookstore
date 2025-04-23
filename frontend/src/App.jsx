@@ -8,6 +8,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import AllOrders from "./pages/AllOrders";
 import ViewBookDetails from "./components/ViewBookDetails/ViewBookDetails";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -16,6 +17,7 @@ import { useDispatch } from "react-redux";
 import Favorites from "./components/Profile/Favorites";
 import UserOrderHistory from "./components/Profile/UserOrderHistory";
 import Settings from "./components/Profile/Settings";
+import AddBook from "./pages/AddBook";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +43,15 @@ function App() {
         <Route path="/all-books" element={<AllBooks />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />}>
-          <Route index element={<Favorites />} />
+          {role === "user" ? (
+            <Route index element={<Favorites />} />
+          ) : (
+            <Route index element={<AllOrders />} />
+          )}
+          {role === "admin" && (
+            <Route path="/profile/add-book" element={<AddBook />} />
+          )}
+
           <Route path="/profile/orderHistory" element={<UserOrderHistory />} />
           <Route path="/profile/settings" element={<Settings />} />
         </Route>

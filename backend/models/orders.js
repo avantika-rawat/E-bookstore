@@ -4,11 +4,11 @@ const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     book: {
       type: mongoose.Types.ObjectId,
-      ref: "books",
+      ref: "Book",
     },
     status: {
       type: String,
@@ -19,4 +19,4 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("order", orderSchema);
+module.exports = mongoose.model("Order", orderSchema);
