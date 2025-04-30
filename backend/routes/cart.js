@@ -53,7 +53,7 @@ router.put(
 //get cart of particular user
 router.get("/get-user-cart", authenticationToken, async (req, res) => {
   try {
-    const { id } = req.headers;
+    const id = req.user.authClaims.id;
     const userData = await User.findById(id).populate("cart");
     const cart = userData.cart.reverse();
     return res.json({

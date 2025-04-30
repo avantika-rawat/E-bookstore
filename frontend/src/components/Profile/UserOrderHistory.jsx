@@ -46,7 +46,7 @@ const UserOrderHistory = () => {
         </div>
       )}
 
-      {Array.isArray(orderHistory) && orderHistory.length > 0 && (
+      {orderHistory && orderHistory.length > 0 && (
         <div className="h-[100%] p-0 md:p-4 text-beige">
           <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8">
             Your Order History

@@ -31,40 +31,39 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="z-50 relative flex bg-darkbrown text-white px-8 py-2 items-center justify-between">
+      <nav className="z-50 h-[10%] relative flex bg-white/10 text-white px-8 py-2 items-center justify-between border-b-2 backdrop-blur-md">
         <Link className="flex" to="/">
           <img
-            className="h-16 w-16 me-4 items-center"
+            className="h-19 w-[14%] me-0 items-center "
             src="images/logo.png"
             alt="logo"
           />
           <div className="text-2xl font-semibold mt-3">
-            <h1>BookCove</h1>
+            <h1 className="font-bold ">BookCove</h1>
           </div>
         </Link>
 
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className="hidden md:flex gap-4">
             {links.map((item, i) => (
-              <div> 
-                {item.title === "Profile" || item.title === "Admin Profile" ?(
-            
-
-              <Link
-                to={item.link}
-                className="hover:text-blue-500 transition-all duration-300"
-                key={i}
-              >
-                {item.title}
-              </Link>
-            ): <Link to={item.link}>
-            
-            className= ""
-            key={i}
-            </Link>
-            
-            
-            )}
+              <div key={i}>
+                {item.title === "Profile" || item.title === "Admin Profile" ? (
+                  <Link
+                    to={item.link}
+                    className="hover:text-beige transition-all duration-300"
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  <Link
+                    to={item.link}
+                    className="hover:text-beige transition-all duration-300"
+                  >
+                    {item.title}
+                  </Link>
+                )}
+              </div>
+            ))}
           </div>
 
           <div className="hidden md:flex gap-4">
@@ -72,13 +71,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/LogIn"
-                  className="px-1 py-2 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+                  className="px-5 py-2 border border-beige font-semibold rounded hover:bg-darkbrown hover:text-white transition-all duration-300"
                 >
                   LogIn
                 </Link>
                 <Link
                   to="/SignUp"
-                  className="px-1 py-2 bg-blue-500 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+                  className="px-4 py-2 border bg-beige text-darkbrown font-semibold rounded hover:bg-transparent hover:text-white transition-all duration-300"
                 >
                   SignUp
                 </Link>

@@ -18,6 +18,7 @@ import Favorites from "./components/Profile/Favorites";
 import UserOrderHistory from "./components/Profile/UserOrderHistory";
 import Settings from "./components/Profile/Settings";
 import AddBook from "./pages/AddBook";
+import UpdateBook from "./pages/UpdateBook";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,8 +37,6 @@ function App() {
 
   return (
     <>
-      <Navbar />
-
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/all-books" element={<AllBooks />} />
@@ -55,6 +54,8 @@ function App() {
           <Route path="/profile/orderHistory" element={<UserOrderHistory />} />
           <Route path="/profile/settings" element={<Settings />} />
         </Route>
+        <Route path="/updateBook/:id" element={<UpdateBook />} />
+
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="view-book-details/:id" element={<ViewBookDetails />} />

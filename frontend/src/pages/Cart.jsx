@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import Navbar from "../components/Navbar/Navbar";
 const Cart = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]); // initial as empty array
@@ -67,89 +68,95 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-beige h-screen w-full p-8">
-      {!cart && (
-        <div className="w-full h-[100%] flex items-center justify-center">
-          <Loader />
-        </div>
-      )}
+    <div
+      className="h-screen bg-cover text-white "
+      style={{ backgroundImage: `url(/images/cart-bg.jpg)` }}
+    >
+      <Navbar />
+      <div className=" h-screen w-full p-8">
+        {!cart && (
+          <div className="w-full h-[100%] flex items-center justify-center">
+            <Loader />
+          </div>
+        )}
 
-      {cart && cart.length === 0 && (
-        <div className="h-screen bg-beige">
-          <div className="h-full flex items-center justify-center flex-col">
-            <h1 className="text-5xl lg:text-6xl font-semibold text-darkbrown opacity-35">
-              Cart is empty
-            </h1>
-            {/* <img
+        {cart && cart.length === 0 && (
+          <div className="h-screen bg-beige">
+            <div className="h-full flex items-center justify-center flex-col">
+              <h1 className="text-5xl lg:text-6xl font-semibold text-darkbrown opacity-35">
+                Cart is empty
+              </h1>
+              {/* <img
         className="lg:h-[50vh]"
         src="/empty-cart.png"
         alt="Empty cart image"
       /> */}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {cart && cart.length > 0 && (
-        <>
-          <h1 className="text-5xl font-semibold text-darkbrown mb-8 flex items-center justify-center">
-            Your cart
-          </h1>
-          {cart.map((items, i) => (
-            <div
-              className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-darkbrown justify-between items-center"
-              key={i}
-            >
-              <img
-                src={items.url}
-                alt={items.title}
-                className="h-[20vh] md:h-[10vh] object-cover"
-              />
-              <div className="w-full md:w-auto md:ml-6 mt-4 md:mt-0">
-                <h1 className="text-2xl text-white font-semibold text-start">
-                  {items.title}
-                </h1>
-                <p className="text-normal text-white mt-2">
-                  {items.desc?.slice(0, 100) ?? "No description available"}...
-                </p>
+        {cart && cart.length > 0 && (
+          <>
+            <h1 className="text-5xl uppercase font-semibold text-white mb-8 flex items-center justify-center">
+              Your cart
+            </h1>
+            {cart.map((items, i) => (
+              <div
+                className="w-full  border bg-transparent backdrop-blur-sm my-4 rounded flex flex-col md:flex-row p-4 bg-darkbrown justify-between items-center"
+                key={i}
+              >
+                <img
+                  src={items.url}
+                  alt={items.title}
+                  className="h-[20vh] md:h-[10vh] object-cover"
+                />
+                <div className="w-full md:w-auto md:ml-6 mt-4 md:mt-0">
+                  <h1 className="text-2xl text-white font-semibold text-start">
+                    {items.title}
+                  </h1>
+                  <p className="text-normal text-white mt-2">
+                    {items.desc?.slice(0, 100) ?? "No description available"}...
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-end mt-4 md:mt-0">
+                  <h2 className="text-white font-semibold text-lg mb-2">
+                    ₹{items.price}
+                  </h2>
+                  <button
+                    onClick={() => deleteItem(items._id)}
+                    className="bg-transparent text-white px-3 py-1 rounded"
+                  >
+                    <RemoveShoppingCartIcon />
+                  </button>
+                </div>
               </div>
+            ))}
+          </>
+        )}
 
-              <div className="flex flex-col items-end mt-4 md:mt-0">
-                <h2 className="text-white font-semibold text-lg mb-2">
-                  ₹{items.price}
-                </h2>
+        {cart && cart.length > 0 && (
+          <div className="mt-4 w-full flex items-center justify-end">
+            <div className="p-4 bg-transparent rounded">
+              <h1 className="text-3xl text-white font-semibold">
+                Total amount
+              </h1>
+              <div className="mt-3 flex items-center justify-between text-xl text-white font-semibold">
+                <h2>{cart.length} books</h2>
+                <h2>{total} </h2>
+              </div>
+              <div className="w-[100%] mt-3">
                 <button
-                  onClick={() => deleteItem(items._id)}
-                  className="bg-beige text-darkbrown px-3 py-1 rounded"
+                  onClick={PlaceOrder}
+                  className="bg-transparent border text-white px-4 py-2 flex justify-center w-full font-semibold hover:text-beige"
                 >
-                  <RemoveShoppingCartIcon />
+                  Place your order
                 </button>
               </div>
             </div>
-          ))}
-        </>
-      )}
-
-      {cart && cart.length > 0 && (
-        <div className="mt-4 w-full flex items-center justify-end">
-          <div className="p-4 bg-beige rounded">
-            <h1 className="text-3xl text-darkbrown font-semibold">
-              Total amount
-            </h1>
-            <div className="mt-3 flex items-center justify-between text-xl text-darkbrown">
-              <h2>{cart.length} books</h2>
-              <h2>{total} </h2>
-            </div>
-            <div className="w-[100%] mt-3">
-              <button
-                onClick={PlaceOrder}
-                className="bg-darkbrown text-white px-4 py-2 flex justify-center w-full font-semibold"
-              >
-                Place your order
-              </button>
-            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -3,13 +3,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [Data, setData] = useState();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
@@ -71,6 +73,15 @@ const ViewBookDetails = () => {
     );
   }
 
+  const deleteBook = async () => {
+    const response = await axios.delete(
+      "http://localhost:1000/api/v1/delete-book",
+      { headers }
+    );
+    alert(response.data.message);
+    navigate("/all-books");
+  };
+
   return (
     <>
       <div className="px-8 md:px-12 py-8 bg-beige flex flex-col lg:flex-row gap-8 items-start">
@@ -84,10 +95,16 @@ const ViewBookDetails = () => {
             {isLoggedIn === true && role === "admin" && (
               <div className="flex flex-col lg:flex-col items-center justify-center mt-4 space-y-4 lg:mt-0 lg:items-start lg:justify-start">
                 <div className="flex flex-row gap-4 lg:flex-col">
-                  <button className="bg-white rounded-full w-12 h-12 text-2xl flex items-center justify-center">
+                  <Link
+                    to={`/updateBook/${id}`}
+                    className="bg-white rounded-full w-12 h-12 text-2xl flex items-center justify-center"
+                  >
                     <EditIcon />
-                  </button>
-                  <button className="bg-white rounded-full w-12 h-12 text-2xl flex items-center justify-center text-red-400">
+                  </Link>
+                  <button
+                    onClick={deleteBook}
+                    className="bg-white rounded-full w-12 h-12 text-2xl flex items-center justify-center text-red-400"
+                  >
                     <DeleteIcon />
                   </button>
                 </div>
