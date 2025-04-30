@@ -1,3 +1,3 @@
 #  BookCove : An E-bookstore
 
-![Screenshot (534)](https://github.com/user-attachments/assets/a90f992f-eb3c-4260-94e9-70f361946e4b)
+![Screenshot (570)](https://github.com/user-attachments/assets/cd50df76-2cd7-40d0-8eb7-9ac34fe9139c)
