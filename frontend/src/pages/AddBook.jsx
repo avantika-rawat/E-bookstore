@@ -49,18 +49,18 @@ const AddBook = () => {
   };
   return (
     <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text 5xl font-semibold text-darkbrown mb-8">
+      <h1 className="text-3xl md:text 5xl font-semibold text-white uppercase mb-8">
         Add Book
       </h1>
-      <div className="p-4 bg-darkbrown rounded">
+      <div className="p-4 bg-white/30 backdrop-blur-md border-2 rounded-2xl">
         <div>
-          <label htmlFor="" className="text-beige">
+          <label htmlFor="" className="text-white font-semibold">
             Image
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
-            placeholder="url of image"
+            className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
+            placeholder="url"
             required
             value={Data.url}
             onChange={change}
@@ -68,12 +68,12 @@ const AddBook = () => {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="" className="text-beige">
+          <label htmlFor="" className="text-white font-semibold">
             Title of Book
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
+            className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
             placeholder="Title"
             name="title"
             required
@@ -83,12 +83,12 @@ const AddBook = () => {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="" className="text-beige">
+          <label htmlFor="" className="text-white font-semibold">
             Author of Book
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
+            className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
             placeholder="Author"
             name="author"
             required
@@ -99,12 +99,12 @@ const AddBook = () => {
 
         <div className="mt-4 flex gap-4">
           <div className="w-3/6">
-            <label htmlFor="" className="text-beige">
+            <label htmlFor="" className="text-white font-semibold">
               Language
             </label>
             <input
               type="text"
-              className="w-full mt-2 bg-beige text-black p-2 outline-none"
+              className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
               placeholder="Language"
               name="Language"
               required
@@ -118,7 +118,7 @@ const AddBook = () => {
             </label>
             <input
               type="text"
-              className="w-full mt-2 bg-beige text-black p-2 outline-none"
+              className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
               placeholder="Price"
               name="price"
               required
@@ -129,12 +129,12 @@ const AddBook = () => {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="" className="text-beige">
+          <label htmlFor="" className="text-white font-semibold">
             Description
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
+            className="placeholder-white/70 w-full mt-2 bg-transparent  border-2 text-white p-2 outline-none"
             placeholder="Description"
             name="desc"
             required

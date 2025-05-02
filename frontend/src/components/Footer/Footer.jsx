@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
     <div
-      className="h-60 bg-cover text-white flex justify-center items-center  "
-      style={{ backgroundImage: `url(/images/footer-background.png)` }}
+      className="h-60 bg-cover text-white flex justify-center items-center border-t-2 "
+      style={{ backgroundImage: `url(/images/footer-bg.jpg)` }}
     >
       {" "}
       <h1 className="text-xl font-semibold text-center ">

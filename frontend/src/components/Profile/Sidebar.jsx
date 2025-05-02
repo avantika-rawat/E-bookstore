@@ -13,7 +13,7 @@ const Sidebar = ({ data }) => {
           {data.username}
         </p>
         <p className="mt-1 text-normal text-zinc-300">{data.email}</p>
-        <div className="w-full mt-4 h-[1px] bg-black hidden lg:block"></div>
+        <div className="w-full mt-4 h-[1px] bg-white hidden lg:block"></div>
       </div>
 
       {role === "user" && (
@@ -35,6 +35,23 @@ const Sidebar = ({ data }) => {
             className="text-zinc-100 font-semibold w-full py-2 text-center hover:text-beige rounded transition-all duration-300"
           >
             Settings
+          </Link>
+        </div>
+      )}
+
+      {role === "admin" && (
+        <div className="w-full flex flex-col gap-5 items-center justify-between my-8">
+          <Link
+            to="/profile"
+            className="text-zinc-100 font-semibold w-full  text-center hover:text-beige rounded transition-all duration-300"
+          >
+            All order History
+          </Link>
+          <Link
+            to="/profile/add-book"
+            className="text-zinc-100 font-semibold w-full text-center hover:text-beige rounded transition-all duration-300"
+          >
+            Add Book
           </Link>
         </div>
       )}

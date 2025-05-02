@@ -1,7 +1,7 @@
-import React from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar/Navbar";
 import { useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateBook = () => {
   const [Data, setData] = useState({
@@ -73,106 +73,112 @@ const UpdateBook = () => {
     fetch();
   }, []);
   return (
-    <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text 5xl font-semibold text-darkbrown mb-8">
-        Update Book
-      </h1>
-      <div className="p-4 bg-darkbrown rounded">
-        <div>
-          <label htmlFor="" className="text-beige">
-            Image
-          </label>
-          <input
-            type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
-            placeholder="url of image"
-            required
-            value={Data.url}
-            onChange={change}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label htmlFor="" className="text-beige">
-            Title of Book
-          </label>
-          <input
-            type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
-            placeholder="Title"
-            name="title"
-            required
-            value={Data.title}
-            onChange={change}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label htmlFor="" className="text-beige">
-            Author of Book
-          </label>
-          <input
-            type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
-            placeholder="Author"
-            name="author"
-            required
-            value={Data.author}
-            onChange={change}
-          />
-        </div>
-
-        <div className="mt-4 flex gap-4">
-          <div className="w-3/6">
-            <label htmlFor="" className="text-beige">
-              Language
-            </label>
-            <input
-              type="text"
-              className="w-full mt-2 bg-beige text-black p-2 outline-none"
-              placeholder="Language"
-              name="Language"
-              required
-              value={Data.language}
-              onChange={change}
-            />
-          </div>
-          <div className="w-3/6">
-            <label htmlFor="" className="text-beige">
-              Price
-            </label>
-            <input
-              type="text"
-              className="w-full mt-2 bg-beige text-black p-2 outline-none"
-              placeholder="Price"
-              name="price"
-              required
-              value={Data.price}
-              onChange={change}
-            />
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <label htmlFor="" className="text-beige">
-            Description
-          </label>
-          <input
-            type="text"
-            className="w-full mt-2 bg-beige text-black p-2 outline-none"
-            placeholder="Description"
-            name="desc"
-            required
-            value={Data.desc}
-            onChange={change}
-          />
-        </div>
-        <button
-          className="mt-4 px-3 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-all duration-300"
-          onSubmit={submit}
-        >
+    <div
+      className="h-screen bg-cover text-white "
+      style={{ backgroundImage: `url(/images/background-img.jpg)` }}
+    >
+      <Navbar />
+      <div className="h-[100%] p-0 md:p-4 mt-4">
+        <h1 className="text-3xl md:text 5xl font-semibold text-white mb-8 text-center uppercase">
           Update Book
-        </button>
+        </h1>
+        <div className="p-4 bg-white/30 backdrop-blur-md border-2 rounded">
+          <div>
+            <label htmlFor="" className="text-white font-semibold">
+              Image
+            </label>
+            <input
+              type="text"
+              className="w-full mt-2 bg-transparent  border-2  text-white p-2 outline-none"
+              placeholder="url of image"
+              required
+              value={Data.url}
+              onChange={change}
+            />
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="" className="text-white font-semibold">
+              Title of Book
+            </label>
+            <input
+              type="text"
+              className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
+              placeholder="Title"
+              name="title"
+              required
+              value={Data.title}
+              onChange={change}
+            />
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="" className="text-white font-semibold">
+              Author of Book
+            </label>
+            <input
+              type="text"
+              className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
+              placeholder="Author"
+              name="author"
+              required
+              value={Data.author}
+              onChange={change}
+            />
+          </div>
+
+          <div className="mt-4 flex gap-4">
+            <div className="w-3/6">
+              <label htmlFor="" className="text-white font-semibold">
+                Language
+              </label>
+              <input
+                type="text"
+                className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
+                placeholder="Language"
+                name="Language"
+                required
+                value={Data.language}
+                onChange={change}
+              />
+            </div>
+            <div className="w-3/6">
+              <label htmlFor="" className="text-white font-semibold">
+                Price
+              </label>
+              <input
+                type="text"
+                className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
+                placeholder="Price"
+                name="price"
+                required
+                value={Data.price}
+                onChange={change}
+              />
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="" className="text-white font-semibold">
+              Description
+            </label>
+            <input
+              type="text"
+              className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
+              placeholder="Description"
+              name="desc"
+              required
+              value={Data.desc}
+              onChange={change}
+            />
+          </div>
+          <button
+            className="mt-4 px-3 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-all duration-300"
+            onSubmit={submit}
+          >
+            Update Book
+          </button>
+        </div>
       </div>
     </div>
   );

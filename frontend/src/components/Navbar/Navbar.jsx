@@ -16,7 +16,7 @@ const Navbar = () => {
   const role = useSelector((state) => state.auth.role);
 
   if (!isLoggedIn) {
-    links.splice(2, 2); // Remove Cart and Profile if not logged in
+    links.splice(2, 3); // Remove Cart and Profile if not logged in
   }
 
   if (isLoggedIn == true && role === "user") {
@@ -71,13 +71,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/LogIn"
-                  className="px-5 py-2 border border-beige font-semibold rounded hover:bg-darkbrown hover:text-white transition-all duration-300"
+                  className="px-5 py-2 border border-beige font-semibold rounded hover:bg-white/30 hover:text-white transition-all duration-300"
                 >
                   LogIn
                 </Link>
                 <Link
                   to="/SignUp"
-                  className="px-4 py-2 border bg-beige text-darkbrown font-semibold rounded hover:bg-transparent hover:text-white transition-all duration-300"
+                  className="px-4 py-2 border bg-white/30
+                   text-white font-semibold rounded hover:bg-transparent hover:text-white transition-all duration-300"
                 >
                   SignUp
                 </Link>

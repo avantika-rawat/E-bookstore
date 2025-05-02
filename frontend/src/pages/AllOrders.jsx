@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SeeUserData from "./SeeUserData";
+import Loader from "../components/Loader/Loader";
 
 const AllOrders = () => {
   const [options, setOptions] = useState(-1);
@@ -20,7 +21,7 @@ const AllOrders = () => {
       setAllOrders(res.data.data);
     };
     fetch();
-  }, [allOrders]);
+  }, []);
   const change = (e) => {
     const { value } = e.target;
     setValues({ status: value });
@@ -28,11 +29,13 @@ const AllOrders = () => {
 
   const submitChanges = async (i) => {
     const id = allOrders[i]._id;
-    const res = await axios.put(`/update-status/${id}`, Values, { headers });
+    const res = await axios.put(`/update-status/${id}`, values, { headers });
     alert(res.data.message);
   };
 
-  const setOptionsButton = (i) => {};
+  const setOptionsButton = (i) => {
+    setOptions(i);
+  };
   return (
     <div>
       {!allOrders && (

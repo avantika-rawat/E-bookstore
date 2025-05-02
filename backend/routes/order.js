@@ -10,6 +10,7 @@ router.post("/place-order", authenticationToken, async (req, res) => {
   try {
     const { id } = req.headers;
     const { order } = req.body;
+    const bookIds = [];
     for (const orderData of order) {
       const newOrder = new Order({ user: id, book: orderData._id });
       const orderDataFronDb = await newOrder.save();
@@ -17,10 +18,12 @@ router.post("/place-order", authenticationToken, async (req, res) => {
       await User.findByIdAndUpdate(id, {
         $push: { orders: orderDataFronDb._id },
       });
+      bookIds.push(orderData._id);
     }
     //clearing cart
-    await User.findByIdAndUpdate(id, { $pull: { cart: orderData._id } });
-
+    await User.findByIdAndUpdate(id, {
+      $pull: { cart: { $in: bookIds } },
+    });
     return res.json({
       status: "Success",
       message: "Order placed successfully",

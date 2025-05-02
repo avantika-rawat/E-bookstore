@@ -18,7 +18,7 @@ const BookCard = ({ data, favourite }) => {
   };
   return (
     <>
-      <div className="w-90 bg-transparent border backdrop-blur-sm rounded p-2 flex flex-col ">
+      <div className="w-90 bg-white/30 backdrop-blur-md border rounded p-2 flex flex-col ">
         <Link to={`/view-book-details/${data._id}`}>
           <div className=" flex items-center justify-center">
             <img src={data.url} alt="/" className="h-[35vh]   " />
@@ -33,19 +33,11 @@ const BookCard = ({ data, favourite }) => {
             </p>
           </div>
         </Link>
-        {/* <div className="flex flex-col justify-center items-center">
-            <div className="bg-zinc-500 rounded flex items-center justify-center"></div>
-            <h2 className="mt-4 text-xl text-white font-bold ">{data.title}</h2>
-            <p className="mt-2 text-white font-semibold">by {data.author}</p>
-            <p className="mt-2 text-white font-semibold">
-              {"\u20B9"}
-              {data.price}
-            </p>
-          </div> */}
+
         {favourite && (
           <button
             onClick={handleRemoveBook}
-            className="bg-beige font-semibold mt-2 p-1 rounded border text-black"
+            className="bg-transparent border-2 font-semibold mt-2 p-1 rounded text-white"
           >
             Remove from favourites
           </button>

@@ -22,7 +22,7 @@ router.put("/add-to-cart", authenticationToken, async (req, res) => {
     await User.findByIdAndUpdate(id, { $push: { cart: bookid } });
     console.log("User cart after update:", userData.cart);
 
-    return res.status(200).json({ message: "Book added to favourites" });
+    return res.status(200).json({ message: "Book added to cart" });
   } catch (error) {
     console.error("Error in /add-book-to-cart:", error);
     res

@@ -69,7 +69,7 @@ const Cart = () => {
 
   return (
     <div
-      className="h-screen bg-cover text-white "
+      className="h-screen bg-cover text-white overflow-y-scroll"
       style={{ backgroundImage: `url(/images/cart-bg.jpg)` }}
     >
       <Navbar />
@@ -81,9 +81,9 @@ const Cart = () => {
         )}
 
         {cart && cart.length === 0 && (
-          <div className="h-screen bg-beige">
+          <div className="h-screen bg-transparent">
             <div className="h-full flex items-center justify-center flex-col">
-              <h1 className="text-5xl lg:text-6xl font-semibold text-darkbrown opacity-35">
+              <h1 className="text-5xl lg:text-6xl font-semibold text-white opacity-30">
                 Cart is empty
               </h1>
               {/* <img
@@ -102,7 +102,7 @@ const Cart = () => {
             </h1>
             {cart.map((items, i) => (
               <div
-                className="w-full  border bg-transparent backdrop-blur-sm my-4 rounded flex flex-col md:flex-row p-4 bg-darkbrown justify-between items-center"
+                className="w-full  border bg-white/30 backdrop-blur-sm my-4 rounded flex flex-col md:flex-row p-4 bg-darkbrown justify-between items-center"
                 key={i}
               >
                 <img

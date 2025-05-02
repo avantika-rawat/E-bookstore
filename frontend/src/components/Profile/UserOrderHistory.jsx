@@ -38,7 +38,7 @@ const UserOrderHistory = () => {
       {orderHistory && orderHistory.length === 0 && (
         <div className="h-[88vh] p-4 text-white">
           <div className="h-[100%] flex flex-col items-center justify-center">
-            <h1 className="text-5xl font-semibold text-darkbrown mb-8 opacity-35">
+            <h1 className="text-5xl font-semibold text-white mb-8 opacity-40">
               No Order History
             </h1>
             <img src="" alt="img" />
@@ -47,12 +47,12 @@ const UserOrderHistory = () => {
       )}
 
       {orderHistory && orderHistory.length > 0 && (
-        <div className="h-[100%] p-0 md:p-4 text-beige">
-          <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8">
+        <div className="h-[40%] p-0 md:p-4 text-white overflow-y-scroll scrollbar scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent ">
+          <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8 ">
             Your Order History
           </h1>
 
-          <div className="mt-4 bg-darkbrown w-full rounded py-2 px-4 flex gap-2">
+          <div className="mt-4 bg-white/25 w-full rounded py-2 px-4 flex gap-2 font-bold">
             <div className="w-[3%]">
               <h1 className="text-center">Sr.</h1>
             </div>
@@ -75,7 +75,7 @@ const UserOrderHistory = () => {
 
           {orderHistory.map((items, i) => (
             <div
-              className="bg-darkbrown w-full rounded py-2 px-4 flex gap-4 hover:bg:beige"
+              className="bg-white/30 w-full border text-white rounded py-2 px-4 flex gap-4 hover:bg:beige"
               key={i}
             >
               <div className="w-[3%]">
@@ -84,7 +84,7 @@ const UserOrderHistory = () => {
 
               <div className="w-[22%]">
                 <Link
-                  to={`/view-book-details/${items.book.id}`}
+                  to={`/view-book-details/${items.book._id}`}
                   className="hover:text-blue"
                 >
                   {items.book.title}

@@ -47,27 +47,27 @@ const Settings = () => {
 
       {profileData && (
         <div className="w-full min-h-screen flex flex-col items-center pt-10 px-4">
-          <h1 className="text-3xl md:text-5xl font-bold text-darkbrown mb-12 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold text-white uppercase mb-12 text-center">
             Settings
           </h1>
 
-          <div className="w-full max-w-3xl bg-darkbrown shadow-xl rounded-2xl p-8 space-y-8">
+          <div className="w-full max-w-3xl border-2 bg-transparent shadow-xl rounded-2xl p-8 space-y-8">
             {/* Username and Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <label className="font-semibold block text-white mb-2">
+                <label className="drop-shadow-md font-semibold block text-white mb-2">
                   Username
                 </label>
-                <p className="p-3 rounded bg-beige font-semibold text-black">
+                <p className="p-3 backdrop-blur-sm rounded bg-transparent border-2 text-white font-semibold">
                   {profileData.username}
                 </p>
               </div>
 
               <div>
-                <label className="font-semibold text-white block mb-2">
+                <label className="drop-shadow-md font-semibold text-white block mb-2">
                   Email
                 </label>
-                <p className="p-3 rounded bg-beige text-black font-semibold">
+                <p className="p-3 rounded backdrop-blur-sm bg-transparent border-2 text-white font-semibold">
                   {profileData.email}
                 </p>
               </div>
@@ -75,11 +75,11 @@ const Settings = () => {
 
             {/* Address */}
             <div>
-              <label className="font-semibold text-white block mb-2">
+              <label className="drop-shadow-md font-semibold text-white block mb-2">
                 Address
               </label>
               <textarea
-                className="w-full p-3 rounded text-black bg-beige font-semibold"
+                className="w-full p-3  rounded bg-transparent border-2 text-white font-semibold backdrop-blur-sm"
                 rows={5}
                 placeholder="Address"
                 name="address"
@@ -92,7 +92,7 @@ const Settings = () => {
             <div className="flex justify-end">
               <button
                 onSubmit={submitAddress}
-                className="bg-yellow-500 text-white font-semibold px-6 py-2 rounded hover:bg-black transition duration-300"
+                className="bg-yellow-700 text-white font-semibold px-6 py-2 rounded hover:bg-black transition duration-300"
               >
                 Update
               </button>
