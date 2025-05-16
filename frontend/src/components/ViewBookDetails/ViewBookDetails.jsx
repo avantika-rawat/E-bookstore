@@ -9,7 +9,6 @@ import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
@@ -25,6 +24,7 @@ const ViewBookDetails = () => {
           `http://localhost:1000/api/v1/get-book-by-id/${id}`
         );
         setData(response.data.data);
+        console.log(response.data);
       } catch (err) {
         console.error("Failed to fetch book details", err);
       }
@@ -39,11 +39,10 @@ const ViewBookDetails = () => {
   };
 
   const handleFav = async () => {
-    // console.log("headers from front: " + JSON.stringify(headers));
     try {
       const response = await axios.put(
         "http://localhost:1000/api/v1/add-book-to-favourite",
-        {}, // Empty body since all necessary data is in headers
+        {},
         { headers }
       );
       alert(response.data.message);
@@ -53,12 +52,10 @@ const ViewBookDetails = () => {
   };
 
   const handleCart = async () => {
-    // console.log("headers from front: " + JSON.stringify(headers));
-
     try {
       const response = await axios.put(
         "http://localhost:1000/api/v1/add-to-cart",
-        {}, // Empty body since all necessary data is in headers
+        {},
         { headers }
       );
       alert(response.data.message);
@@ -66,14 +63,6 @@ const ViewBookDetails = () => {
       console.log("Failed to add to Cart", error);
     }
   };
-
-  if (!Data) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Loader />
-      </div>
-    );
-  }
 
   const deleteBook = async () => {
     const response = await axios.delete(
@@ -84,24 +73,35 @@ const ViewBookDetails = () => {
     navigate("/all-books");
   };
 
+  if (!Data) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <>
       <div
-        className="h-screen bg-cover text-white "
-        style={{ backgroundImage: `url(/images/view-all-book-bg.jpg)` }}
+        className="min-h-screen bg-cover text-white"
+        style={{ backgroundImage: `url(/images/AllBooksBg.jpg)` }}
       >
         <Navbar />
-        <div className="px-8 md:px-12 py-8 bg-transparent flex flex-col lg:flex-row gap-8 items-start">
-          <div className="   w-full lg:w-3/6 ">
-            <div className="flex flex-col lg:flex-row justify-around rounded bg-transparent py-12 ">
-              <img
-                src={Data.url}
-                className="h-[50vh] m-8 md:h-[70vh] lg:h-[70vh] rounded"
-                alt={Data.title}
-              />
-              {isLoggedIn === true && role === "admin" && (
-                <div className="flex flex-col lg:flex-col items-center justify-center mt-4 space-y-4 lg:mt-0 lg:items-start lg:justify-start">
-                  <div className="flex flex-row gap-4 lg:flex-col">
+        <div className="px-4 md:px-12 py-8 flex flex-col lg:flex-row gap-8 mt-8">
+          {/* Left Section: Image + Admin/User Buttons */}
+          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row gap-4 items-center lg:items-start">
+            <img
+              src={Data.url}
+              className="w-full sm:w-[80%] lg:w-[60%] max-h-[70vh] object-contain rounded"
+              alt={Data.title}
+            />
+
+            {/* Buttons Section */}
+            {isLoggedIn && (
+              <div className="flex gap-4 lg:flex-col mt-4 lg:mt-0">
+                {role === "admin" && (
+                  <>
                     <Link
                       to={`/updateBook/${id}`}
                       className="bg-white text-black rounded-full w-12 h-12 text-2xl flex items-center justify-center"
@@ -114,14 +114,12 @@ const ViewBookDetails = () => {
                     >
                       <DeleteIcon />
                     </button>
-                  </div>
-                </div>
-              )}
-              {isLoggedIn === true && role === "user" && (
-                <div className="flex flex-col lg:flex-col items-center justify-center mt-4 space-y-4 lg:mt-0 lg:items-start lg:justify-start">
-                  <div className="flex flex-row gap-4 lg:flex-col">
+                  </>
+                )}
+                {role === "user" && (
+                  <>
                     <button
-                      className="bg-white  rounded-full w-12 h-12 text-2xl flex items-center justify-center text-red-400"
+                      className="bg-white rounded-full w-12 h-12 text-2xl flex items-center justify-center text-red-400"
                       onClick={handleFav}
                     >
                       <FavoriteIcon />
@@ -132,15 +130,17 @@ const ViewBookDetails = () => {
                     >
                       <ShoppingCartIcon />
                     </button>
-                  </div>
-                </div>
-              )}
-            </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
-          <div className="p-4 text-white  lg:w-3/6">
+
+          {/* Right Section: Book Details */}
+          <div className="w-full lg:w-1/2 p-4 text-white">
             <h2 className="text-3xl font-bold mb-4">{Data.title}</h2>
             <p className="mb-2 font-semibold">Author: {Data.author}</p>
-            <p className="mt-4 font-semibold">{Data.desc}</p>
+            <p className="mb-4 font-semibold">{Data.desc}</p>
             <p className="mb-2 font-semibold">Price: ₹{Data.price}</p>
             <p className="mb-2 font-semibold">Language: {Data.language}</p>
           </div>

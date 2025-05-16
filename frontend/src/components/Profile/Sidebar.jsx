@@ -1,73 +1,93 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../features/auth";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 const Sidebar = ({ data }) => {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const role = useSelector((state) => state.auth.role);
+
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+    dispatch(authActions.changeRole("user"));
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/");
+  };
+
   return (
-    <div className="bg-transparent border p-4 rounded flex flex-col items-between justify-center h-auto lg:h-[80%] backdrop-blur-sm">
-      <div className="flex items-center flex-col justify-center">
-        <img src={data.avatar} className="h-[10vh]" />
-        <p className="mt-3 text-xl text-zinc-100 font-semibold">
+    <div className="bg-white/10 border border-white/30 rounded-2xl p-6 backdrop-blur-md flex flex-col justify-between h-full">
+      {/* Profile Section */}
+      <div className="flex flex-col items-center text-center">
+        <img
+          src={data.avatar}
+          alt="User Avatar"
+          className="h-20 w-20 sm:h-28 sm:w-28 lg:h-32 lg:w-32 rounded-full object-cover border-2 border-white/30"
+        />
+        <p className="mt-3 text-white text-lg sm:text-xl font-semibold">
           {data.username}
         </p>
-        <p className="mt-1 text-normal text-zinc-300">{data.email}</p>
-        <div className="w-full mt-4 h-[1px] bg-white hidden lg:block"></div>
+        <p className="text-sm text-zinc-300">{data.email}</p>
+        <hr className="w-full my-4 border-white/30 hidden lg:block" />
       </div>
 
-      {role === "user" && (
-        <div className="w-full flex-col items-center justify-evenly hidden lg:flex">
-          <Link
-            to="/profile"
-            className="text-zinc-100 border-blue-50 font-semibold w-full py-2 text-center hover:text-beige rounded transition-all duration-300"
-          >
-            Favourites
-          </Link>
-          <Link
-            to="/profile/orderHistory"
-            className="text-zinc-100 font-semibold w-full py-2 text-center hover:text-beige rounded transition-all duration-300"
-          >
-            Order History
-          </Link>
-          <Link
-            to="/profile/settings"
-            className="text-zinc-100 font-semibold w-full py-2 text-center hover:text-beige rounded transition-all duration-300"
-          >
-            Settings
-          </Link>
-        </div>
-      )}
+      {/* Links */}
+      <div className="flex flex-col items-center space-y-4 mt-6">
+        {role === "user" && (
+          <>
+            <Link
+              to="/profile"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              Favourites
+            </Link>
+            <Link
+              to="/profile/orderHistory"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              Order History
+            </Link>
+            <Link
+              to="/profile/settings"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              Settings
+            </Link>
+          </>
+        )}
 
-      {role === "admin" && (
-        <div className="w-full flex flex-col gap-5 items-center justify-between my-8">
-          <Link
-            to="/profile"
-            className="text-zinc-100 font-semibold w-full  text-center hover:text-beige rounded transition-all duration-300"
-          >
-            All order History
-          </Link>
-          <Link
-            to="/profile/add-book"
-            className="text-zinc-100 font-semibold w-full text-center hover:text-beige rounded transition-all duration-300"
-          >
-            Add Book
-          </Link>
-        </div>
-      )}
+        {role === "admin" && (
+          <>
+            <Link
+              to="/profile"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              All Orders
+            </Link>
+            <Link
+              to="/profile/add-book"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              Add Book
+            </Link>
+            <Link
+              to="/profile/settings"
+              className="text-white w-full text-center font-medium hover:text-beige transition duration-300"
+            >
+              Settings
+            </Link>
+          </>
+        )}
+      </div>
 
+      {/* Logout Button */}
       <button
-        onClick={() => {
-          dispatch(authActions.logout());
-          dispatch(authActions.changeRole("user"));
-          localStorage.clear("id");
-          localStorage.clear("token");
-          localStorage.clear("role");
-          history("/");
-        }}
-        className="bg-transparent ml-12 border w-3/6 lg:full mt-4 text-white font-semibold flex items-center justify-center py-2 rounded hover:text-beige transition-all duration-300"
+        onClick={handleLogout}
+        className="mt-8 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 w-full rounded flex items-center justify-center gap-2 transition-all duration-300"
       >
-        Log Out
+        <LogoutIcon /> Log Out
       </button>
     </div>
   );

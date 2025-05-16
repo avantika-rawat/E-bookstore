@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SeeUserData from "./SeeUserData";
 import Loader from "../components/Loader/Loader";
+import CheckIcon from "@mui/icons-material/Check";
+import PersonIcon from "@mui/icons-material/Person";
+import CallMissedOutgoingIcon from "@mui/icons-material/CallMissedOutgoing";
+import SeeUserData from "./SeeUserData";
 
 const AllOrders = () => {
   const [options, setOptions] = useState(-1);
@@ -11,17 +13,27 @@ const AllOrders = () => {
   const [values, setValues] = useState({ status: "" });
   const [userDiv, setUserDiv] = useState("hidden");
   const [userDivData, setUserDivData] = useState();
+
   const headers = {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     id: localStorage.getItem("id"),
   };
+
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/get-all-orders", { headers });
-      setAllOrders(res.data.data);
+      try {
+        const res = await axios.get(
+          "http://localhost:1000/api/v1/get-all-orders",
+          { headers }
+        );
+        setAllOrders(res.data.data);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
     };
     fetch();
   }, []);
+
   const change = (e) => {
     const { value } = e.target;
     setValues({ status: value });
@@ -29,15 +41,20 @@ const AllOrders = () => {
 
   const submitChanges = async (i) => {
     const id = allOrders[i]._id;
-    const res = await axios.put(`/update-status/${id}`, values, { headers });
+    const res = await axios.put(
+      `http://localhost:1000/api/v1/update-status/${id}`,
+      values,
+      { headers }
+    );
     alert(res.data.message);
   };
 
-  const setOptionsButton = (i) => {
+  const setOption = (i) => {
     setOptions(i);
   };
+
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {!allOrders && (
         <div className="flex items-center justify-center h-[100%]">
           <Loader />
@@ -45,109 +62,115 @@ const AllOrders = () => {
       )}
 
       {allOrders && allOrders.length > 0 && (
-        <div className="h-[100%] p-0 md:p-4 text-beige">
-          <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8">
+        <div className="h-[80vh] p-4 text-white overflow-y-auto">
+          <h1 className="text-3xl sm:text-2xl md:text-5xl font-semibold text-white mb-8">
             All Orders
           </h1>
 
-          <div className="mt-4 bg-darkbrown w-full rounded py-2 px-4 flex gap-2">
-            <div className="w-[3%]">
-              <h1 className="text-center">Sr.</h1>
-            </div>
-            <div className="w-[22%]">
-              <h1>Books</h1>
-            </div>
-            <div className="w-[45%]">
-              <h1>Description</h1>
-            </div>
-            <div className="w-[9%]">
-              <h1>Price</h1>
-            </div>
-            <div className="w-[16%]">
-              <h1>Status</h1>
-            </div>
-            <div className="w-none md:w-[5%] hidden md:block">
-              <h1>Model</h1>
+          {/* Scrollable table container */}
+          <div className="w-full overflow-x-auto">
+            <div className="min-w-[1000px] table border-collapse w-full text-white">
+              {/* Header */}
+              <div className="table-header-group bg-white/30 font-bold border rounded">
+                <div className="table-row">
+                  <div className="table-cell p-2 text-center">Sr.</div>
+                  <div className="table-cell p-2">Books</div>
+                  <div className="table-cell p-2">Description</div>
+                  <div className="table-cell p-2">Price</div>
+                  <div className="table-cell p-2">Status</div>
+                  <div className="table-cell p-2 text-center">
+                    <PersonIcon />
+                  </div>
+                </div>
+              </div>
+
+              {/* Rows */}
+              <div className="table-row-group">
+                {allOrders.map((items, i) => (
+                  <div
+                    key={items._id}
+                    className="table-row bg-white/20 hover:bg-white/30 text-white font-semibold border rounded"
+                  >
+                    <div className="table-cell p-2 text-center">{i + 1}</div>
+                    <div className="table-cell p-2">
+                      {items.book ? (
+                        <Link
+                          to={`/view-book-details/${items.book._id}`}
+                          className="hover:text-blue-50"
+                        >
+                          {items.book.title}
+                        </Link>
+                      ) : (
+                        <span className="text-red-500">Book not available</span>
+                      )}
+                    </div>
+                    <div className="table-cell p-2">
+                      {items.book?.desc?.slice(0, 50) || "No description"}
+                    </div>
+                    <div className="table-cell p-2">
+                      ₹{items.book?.price || "N/A"}
+                    </div>
+                    <div className="table-cell p-2">
+                      <button
+                        onClick={() => setOption(i)}
+                        className="hover:scale-105 transition-all duration-300"
+                      >
+                        {items.status === "Order Placed" ? (
+                          <div className="text-yellow-300">{items.status}</div>
+                        ) : items.status === "Canceled" ? (
+                          <div className="text-red-600">{items.status}</div>
+                        ) : (
+                          <div className="text-green-600">{items.status}</div>
+                        )}
+                      </button>
+                      <div
+                        className={`${options === i ? "flex mt-1" : "hidden"}`}
+                      >
+                        <select
+                          onChange={change}
+                          name="status"
+                          value={values.status}
+                          className="bg-white/50 text-black border-none"
+                        >
+                          {[
+                            "Order placed",
+                            "Out for delivery",
+                            "Delivered",
+                            "Canceled",
+                          ].map((status, i) => (
+                            <option value={status} key={i}>
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                        <button
+                          onClick={() => {
+                            setOptions(-1);
+                            submitChanges(i);
+                          }}
+                          className="text-green-50 mx-2 hover:text-blue-600"
+                        >
+                          <CheckIcon />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="table-cell p-2 text-center">
+                      <button
+                        onClick={() => {
+                          setUserDiv("fixed z-50");
+                          setUserDivData(items.user);
+                        }}
+                        className="text-xl hover:text-black"
+                      >
+                        <CallMissedOutgoingIcon />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          {allOrders.map((items, i) => {
-            <div className="bg-darkbrown w-full rounded py-4 px-4 flex gap-2 ">
-              <div className="w-[3]">
-                <h1 className="text-center">{i + 1}</h1>
-              </div>
-              <div className="w-[40%] md:w-[22%]">
-                <Link
-                  to={`/view-book-details/${items.book._id}`}
-                  className="hover:text-blue-50"
-                >
-                  {items.book.title}
-                </Link>
-              </div>
-              <div className="w-0 md:w-[45] hidden md:block">
-                <h1 className="">{items.book.desc.slice(0, 50)}...</h1>
-              </div>
-              <div className="w-[17%] md:w-[9%]">
-                <h1 className="">{items.book.price}</h1>
-              </div>
-              <div className="w-[30%] md:w-[16%] ">
-                <h1 className="font-semibold">
-                  <button
-                    onClick={() => setOptionsButton(i)}
-                    className="hover:scale-105 transition-all duration-300"
-                  >
-                    {items.status === "Order placed" ? (
-                      <div className="text-yellow-50">{items.status}</div>
-                    ) : items.status === "Canceled" ? (
-                      <div className="text-red-50">{items.status}</div>
-                    ) : (
-                      <div className="text-red-50">{items.status}</div>
-                    )}
-                  </button>
-                  <div className={`${options === i ? "flex" : "hidden"}`}>
-                    <select
-                      onChange={change}
-                      name="status"
-                      value={values.status}
-                      id=""
-                      className="bg-darkbrown"
-                    >
-                      {[
-                        "Order placed",
-                        "Out for delivery",
-                        "Delivered",
-                        "Canceled",
-                      ].map((items, i) => (
-                        <option value={items} key={i}>
-                          {" "}
-                          {items}
-                        </option>
-                      ))}
-                    </select>
-                    <button
-                      onClick={() => {
-                        setOptions(-1);
-                        submitChanges(i);
-                      }}
-                      className="text-green-50 mx-2 hover:bg-pink-500"
-                    >
-                      chcek
-                    </button>
-                  </div>
-                </h1>
-              </div>
-              <div className="w-[10%] md:w-[5%]">
-                <button
-                  onClick={() => {
-                    setUserDiv("fixed");
-                    setUserDivData(items.user);
-                  }}
-                  className="text-xl hover:text-orange-300"
-                >
-                  button
-                </button>
-              </div>
-            </div>;
-          })}
+
           {userDivData && (
             <SeeUserData
               userDivData={userDivData}

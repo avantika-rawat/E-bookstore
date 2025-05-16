@@ -55,7 +55,7 @@ const UpdateBook = () => {
       }
     } catch (err) {
       alert(err.res.data.message);
-      navigate(`/view-book-details${id}`);
+      navigate(`/view-book-details/${id}`);
     }
   };
 
@@ -136,7 +136,7 @@ const UpdateBook = () => {
                 type="text"
                 className="w-full mt-2 bg-transparent border-2  text-white p-2 outline-none"
                 placeholder="Language"
-                name="Language"
+                name="language"
                 required
                 value={Data.language}
                 onChange={change}
@@ -174,7 +174,7 @@ const UpdateBook = () => {
           </div>
           <button
             className="mt-4 px-3 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-all duration-300"
-            onSubmit={submit}
+            onClick={submit}
           >
             Update Book
           </button>

@@ -55,39 +55,38 @@ router.get("/get-order-history", authenticationToken, async (req, res) => {
 });
 
 //get all orders ---admin
-// router.get("/get-all-orders", authenticationToken, async (req, res) => {
-//   try {
-//     const userData = await Order.find()
-//       .populate({
-//         path: "book",
-//       })
-//       .populate({
-//         path: "user",
-//       })
-//       .sort({ createdAt: -1 });
-//     return res.json({
-//       status: "success",
-//       data: userData,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
+router.get("/get-all-orders", authenticationToken, async (req, res) => {
+  try {
+    const userData = await Order.find()
+      .populate({ path: "book" })
+      .populate({ path: "user" })
+      .sort({ createdAt: -1 });
+
+    console.log("Fetched orders:", userData); // 👈 Move this above return
+
+    return res.json({
+      status: "success",
+      data: userData,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 // //update order --admin
-// router.put("/update-status/:id", authenticationToken, async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     await Order.findByIdAndUpdate(id, { status: req.body.status });
-//     return res.json({
-//       status: "Success",
-//       message: "Status Updated Successfully",
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
+router.put("/update-status/:id", authenticationToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Order.findByIdAndUpdate(id, { status: req.body.status });
+    return res.json({
+      status: "Success",
+      message: "Status Updated Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 module.exports = router;

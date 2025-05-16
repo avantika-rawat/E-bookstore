@@ -45,7 +45,7 @@ const UserOrderHistory = () => {
           </div>
         </div>
       )}
-
+{/* scroller tailwind plugin for scrolling styling  */}
       {orderHistory && orderHistory.length > 0 && (
         <div className="h-[40%] p-0 md:p-4 text-white overflow-y-scroll scrollbar scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent ">
           <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8 ">

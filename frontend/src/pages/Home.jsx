@@ -9,7 +9,7 @@ const Home = () => {
         style={{
           backgroundImage: `url(/images/bg-img.jpg)`,
         }}
-        className="h-screen bg-cover text-white "
+        className="bg-cover bg-center bg-no-repeat text-white min-h-screen w-full"
       >
         <Navbar />
         <Hero />

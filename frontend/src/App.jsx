@@ -1,6 +1,5 @@
 import Home from "./pages/Home";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllBooks from "./pages/AllBooks";
@@ -47,9 +46,7 @@ function App() {
           ) : (
             <Route index element={<AllOrders />} />
           )}
-          {role === "admin" && (
-            <Route path="/profile/add-book" element={<AddBook />} />
-          )}
+          {role === "admin" && <Route path="add-book" element={<AddBook />} />}
 
           <Route path="/profile/orderHistory" element={<UserOrderHistory />} />
           <Route path="/profile/settings" element={<Settings />} />

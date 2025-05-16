@@ -101,7 +101,7 @@ const Navbar = () => {
 
       {/* Mobile Nav */}
       <div
-        className={`${MobileNav} bg-zinc-800 h-screen absolute top-0 left-0 w-full z-40 flex flex-col items-center justify-center`}
+        className={`${MobileNav} bg-white/30 backdrop-blur-sm h-screen absolute top-0 left-0 w-full z-40 flex flex-col items-center justify-center`}
       >
         {links.map((item, i) => (
           <div
@@ -129,7 +129,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/SignUp"
-              className="text-xl font-semibold px-8 mb-8 py-2 bg-blue-500 text-zinc-800 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
+              className="text-xl font-semibold px-8 mb-8 py-2 bg-blue-500 text-white rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
               onClick={() => setMobileNav("hidden")}
             >
               SignUp

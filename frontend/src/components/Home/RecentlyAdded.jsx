@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader";
 
 const RecentlyAdded = () => {
   const [Data, setData] = useState();
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
@@ -14,28 +15,29 @@ const RecentlyAdded = () => {
     };
     fetch();
   }, []);
+
   return (
     <div
-      className="h-screen bg-cover text-white "
+      className="min-h-screen bg-cover bg-center text-white py-8 px-4"
       style={{ backgroundImage: `url(/images/bg-RA.jpg)` }}
     >
-      <div className="py-4 px-4 ">
-        <h4 className="text-3xl text-white text-center font-bold">
-          Recently added books
-        </h4>
-        {!Data && (
-          <div className="flex items-center justify-center my-8">
-            <Loader />
-          </div>
-        )}
-        <div className="my-8 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {Data &&
-            Data.map((items, i) => (
-              <div key={i}>
-                <BookCard data={items} />
-              </div>
-            ))}
+      <h4 className="text-2xl md:text-3xl lg:text-4xl text-white text-center font-bold">
+        Recently added books
+      </h4>
+
+      {!Data && (
+        <div className="flex items-center justify-center my-8">
+          <Loader />
         </div>
+      )}
+
+      <div className="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {Data &&
+          Data.map((items, i) => (
+            <div key={i}>
+              <BookCard data={items} />
+            </div>
+          ))}
       </div>
     </div>
   );
