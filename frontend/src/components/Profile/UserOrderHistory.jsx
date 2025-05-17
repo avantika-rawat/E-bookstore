@@ -45,9 +45,9 @@ const UserOrderHistory = () => {
           </div>
         </div>
       )}
-{/* scroller tailwind plugin for scrolling styling  */}
+      {/* scroller tailwind plugin for scrolling styling  */}
       {orderHistory && orderHistory.length > 0 && (
-        <div className="h-[40%] p-0 md:p-4 text-white overflow-y-scroll scrollbar scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent ">
+        <div className="min-h-[70vh] max-h-[85vh] p-0 md:p-4 text-white overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent">
           <h1 className="text-3xl md:text-5xl font-semibold text-white mb-8 ">
             Your Order History
           </h1>
@@ -84,20 +84,19 @@ const UserOrderHistory = () => {
 
               <div className="w-[22%]">
                 <Link
-                  to={`/view-book-details/${items.book._id}`}
+                  to={
+                    items.book?._id
+                      ? `/view-book-details/${items.book._id}`
+                      : "#"
+                  }
                   className="hover:text-blue"
                 >
-                  {items.book.title}
+                  {items.book?.title || "Unknown Book"}
                 </Link>
               </div>
 
-              <div className="w-[45%]">
-                <h1>{items.book.desc.slice(0, 50)}...</h1>
-              </div>
-
-              <div className="w-[9%]">
-                <h1>{items.book.price}</h1>
-              </div>
+              <h1>{items.book?.desc?.slice(0, 50) || "No description"}...</h1>
+              <h1>{items.book?.price || "N/A"}</h1>
 
               <div className="w-[16%]">
                 <h1 className="font-semibold text-green">

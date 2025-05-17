@@ -35,7 +35,7 @@ const Profile = () => {
       style={{ backgroundImage: `url(/images/background-img.jpg)` }}
     >
       <Navbar />
-      <div className="px-2 md:px-12 py-8 flex flex-col lg:flex-row gap-6">
+      <div className="px-1 md:px-12 py-8 flex flex-col lg:flex-row gap-6">
         {!profile ? (
           <div className="w-full flex items-center justify-center h-[60vh]">
             <Loader />
