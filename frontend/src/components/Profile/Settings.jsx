@@ -13,7 +13,7 @@ const Settings = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "http://localhost:1000/api/v1/get-user-information",
+        "https://bookcove.onrender.com/api/v1/get-user-information",
         { headers }
       );
 
@@ -30,7 +30,7 @@ const Settings = () => {
 
   const submitAddress = async () => {
     const response = await axios.put(
-      "http://localhost:100/api/v1/update-address",
+      "https://bookcove.onrender.com/api/v1/update-address",
       value,
       { headers }
     );
