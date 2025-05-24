@@ -4,7 +4,7 @@ A full-stack web application built with the MERN (MongoDB, Express, React, Node.
 
 ## Demo
 
-[Live Demo](https://your-demo-link.com)
+[Live Demo](dynamic-syrniki-11328f.netlify.app)
 
 For user demo : username - demo-user , password - 123456 <br>
 For admin demo : username - admin , password - 123456
