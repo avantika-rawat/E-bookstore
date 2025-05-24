@@ -9,7 +9,12 @@ const Favourite = require("./routes/favourite");
 const Cart = require("./routes/cart");
 app.use(express.json());
 const Order = require("./routes/order");
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://dynamic-syrniki-11328f.netlify.app",
+    credentials: true,
+  })
+);
 
 //routes
 app.use("/api/v1", user);
