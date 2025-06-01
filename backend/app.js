@@ -11,7 +11,7 @@ app.use(express.json());
 const Order = require("./routes/order");
 app.use(
   cors({
-    origin: "https://dynamic-syrniki-11328f.netlify.app",
+    origin: "https://voluble-cupcake-885cc3.netlify.app",
     credentials: true,
   })
 );
@@ -24,7 +24,7 @@ app.use("/api/v1", Cart);
 app.use("/api/v1", Order);
 
 app.get("/", (req, res) => {
-  res.send("hello from back");
+  res.send("hello from backend");
 });
 
 //creating port
