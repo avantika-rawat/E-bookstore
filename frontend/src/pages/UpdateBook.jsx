@@ -75,7 +75,7 @@ const UpdateBook = () => {
   return (
     <div
       className="h-screen bg-cover text-white "
-      style={{ backgroundImage: `url(/images/background-img.jpg)` }}
+      style={{ backgroundImage: `url(/images/background-img.webp)` }}
     >
       <Navbar />
       <div className="h-[100%] p-0 md:p-4 mt-4">

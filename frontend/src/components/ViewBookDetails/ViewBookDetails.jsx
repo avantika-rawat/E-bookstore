@@ -85,7 +85,7 @@ const ViewBookDetails = () => {
     <>
       <div
         className="min-h-screen bg-cover text-white"
-        style={{ backgroundImage: `url(/images/AllBooksBg.jpg)` }}
+        style={{ backgroundImage: `url(/images/AllBooksBg.webp)` }}
       >
         <Navbar />
         <div className="px-4 md:px-12 py-8 flex flex-col lg:flex-row gap-8 mt-8">

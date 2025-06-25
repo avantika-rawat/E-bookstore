@@ -45,7 +45,7 @@ const SignUp = () => {
       {/* Left Side - Image */}
       <div className="w-1/2 hidden md:flex items-center justify-center bg-gray-100">
         <img
-          src="../public/images/signup.visual.png"
+          src="../public/images/signup.visual.webp"
           alt="Signup Visual"
           className="object-cover h-full w-full"
         />

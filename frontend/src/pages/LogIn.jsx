@@ -9,7 +9,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-  console.log("Values being sent to server:", Values);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +29,6 @@ const Login = () => {
           "https://bookcove.onrender.com/api/v1/sign-in",
           Values
         );
-        console.log(response);
         dispatch(authActions.login());
         dispatch(authActions.changeRole(response.data.role));
 
@@ -48,7 +46,7 @@ const Login = () => {
       {/* Left Side - Image */}
       <div className="w-1/2 hidden md:flex items-center justify-center bg-gray-100">
         <img
-          src="../public/images/signup.visual.png"
+          src="../public/images/signup.visual.webp"
           alt="Login Visual"
           className="object-cover h-full w-full"
         />

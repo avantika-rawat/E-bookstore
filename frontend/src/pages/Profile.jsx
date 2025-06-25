@@ -32,7 +32,7 @@ const Profile = () => {
   return (
     <div
       className="min-h-screen bg-cover text-white"
-      style={{ backgroundImage: `url(/images/background-img.jpg)` }}
+      style={{ backgroundImage: `url(/images/background-img.webp)` }}
     >
       <Navbar />
       <div className="px-1 md:px-12 py-8 flex flex-col lg:flex-row gap-6">

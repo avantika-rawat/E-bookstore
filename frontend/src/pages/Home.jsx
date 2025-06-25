@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <div
         style={{
-          backgroundImage: `url(/images/bg-img.jpg)`,
+          backgroundImage: `url(/images/bg-img.webp)`,
         }}
         className="bg-cover bg-center bg-no-repeat text-white min-h-screen w-full"
       >

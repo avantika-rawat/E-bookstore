@@ -19,7 +19,7 @@ const RecentlyAdded = () => {
   return (
     <div
       className="min-h-screen bg-cover bg-center text-white py-8 px-4"
-      style={{ backgroundImage: `url(/images/bg-RA.jpg)` }}
+      style={{ backgroundImage: `url(/images/bg-RA.webp)` }}
     >
       <h4 className="text-2xl md:text-3xl lg:text-4xl text-white text-center font-bold">
         Recently added books

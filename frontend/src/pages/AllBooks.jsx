@@ -17,7 +17,7 @@ const AllBooks = () => {
   });
   return (
     <div
-      style={{ backgroundImage: `url(/images/AllBooksBg.jpg)` }}
+      style={{ backgroundImage: `url(/images/AllBooksBg.webp)` }}
       className="h-screen bg-cover text-white "
     >
       <Navbar />

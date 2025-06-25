@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <div
       className="h-60 bg-cover text-white flex justify-center items-center border-t-2 "
-      style={{ backgroundImage: `url(/images/footer-bg.jpg)` }}
+      style={{ backgroundImage: `url(/images/footer-bg.webp)` }}
     >
       {" "}
       <h1 className="text-xl font-semibold text-center ">
