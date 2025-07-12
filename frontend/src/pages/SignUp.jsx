@@ -68,7 +68,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 name="username"
                 placeholder="Username"
                 required
@@ -85,7 +85,7 @@ const SignUp = () => {
               </label>
               <input
                 type="email"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 name="email"
                 placeholder="Email"
                 value={Values.email}
@@ -102,7 +102,7 @@ const SignUp = () => {
               </label>
               <input
                 type="password"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 name="password"
                 placeholder="Password"
                 value={Values.password}
@@ -120,7 +120,7 @@ const SignUp = () => {
               </label>
               <textarea
                 rows="5"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 name="address"
                 placeholder="Address"
                 required
@@ -131,7 +131,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-orange-950 text-white rounded-md hover:bg-blue-700 transition"
+              className="w-full py-2 px-4 bg-darkbrown text-white rounded-md hover:bg-darkbrown/95 transition"
             >
               Sign Up
             </button>
@@ -139,7 +139,10 @@ const SignUp = () => {
 
           <p className="text-sm text-gray-600">
             Already have an account?
-            <Link to="/login" className="text-blue-600 hover:underline">
+            <Link
+              to="/login"
+              className="text-darkbrown font-semibold hover:underline"
+            >
               Log In
             </Link>
           </p>

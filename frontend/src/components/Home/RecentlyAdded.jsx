@@ -9,7 +9,7 @@ const RecentlyAdded = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://bookcove.onrender.com/api/v1/get-recent-books"
+        "http://localhost:1000/api/v1/get-recent-books"
       );
       setData(response.data.data);
     };
@@ -19,7 +19,13 @@ const RecentlyAdded = () => {
   return (
     <div
       className="min-h-screen bg-cover bg-center text-white py-8 px-4"
-      style={{ backgroundImage: `url(/images/bg-RA.webp)` }}
+      style={{
+        background: "linear-gradient(135deg, #000000, #011915)", // pure black to near-black emerald
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.03)",
+        color: "#ffffff",
+      }}
     >
       <h4 className="text-2xl md:text-3xl lg:text-4xl text-white text-center font-bold">
         Recently added books
@@ -30,7 +36,6 @@ const RecentlyAdded = () => {
           <Loader />
         </div>
       )}
-
       <div className="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {Data &&
           Data.map((items, i) => (

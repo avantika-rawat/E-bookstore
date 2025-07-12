@@ -52,7 +52,6 @@ router.post("/sign-up", async (req, res) => {
     res.status(500).json({
       message: "Internal server error",
       error: error.message, // <-- send back the real message
-      stack: error.stack, // <-- optional: full stack trace
     });
   }
 });
@@ -107,13 +106,11 @@ router.post("/sign-in", async (req, res) => {
 
 //get-user-info
 router.get("/get-user-information", authenticationToken, async (req, res) => {
-  // console.log("🧠 Decoded user:", req.user);
-
   try {
     console.log("Decoded user in middleware:", req.user);
     const { id } = req.user.authClaims;
     console.log("User ID:", id);
-    const data = await User.findById(id).select("-password"); //removes the password from the data
+    const data = await User.findById(id).select("-password");
     console.log("User data from DB:", data);
 
     return res.status(200).json(data);

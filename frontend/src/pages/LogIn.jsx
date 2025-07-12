@@ -26,7 +26,7 @@ const Login = () => {
         alert("All fields are required");
       } else {
         const response = await axios.post(
-          "https://bookcove.onrender.com/api/v1/sign-in",
+          "http://localhost:1000/api/v1/sign-in",
           Values
         );
         dispatch(authActions.login());
@@ -53,6 +53,7 @@ const Login = () => {
       </div>
 
       {/* Right Side - Login Form */}
+
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-8">
         <div className="max-w-md w-full space-y-6">
           <h2 className="text-3xl font-bold text-gray-900">Welcome Back!</h2>
@@ -69,7 +70,7 @@ const Login = () => {
                 type="text"
                 name="username"
                 placeholder="Username"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 value={Values.username}
                 onChange={change}
                 required
@@ -87,7 +88,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-darkbrown"
                 required
                 value={Values.password}
                 onChange={change}
@@ -97,7 +98,7 @@ const Login = () => {
             <button
               onClick={submit}
               type="submit"
-              className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+              className="w-full py-2 px-4 bg-darkbrown text-white rounded-md hover:bg-darkbrown/95"
             >
               Login
             </button>
@@ -105,7 +106,10 @@ const Login = () => {
 
           <p className="text-sm text-gray-600">
             Don’t have an account?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
+            <Link
+              to="/signup"
+              className="text-darkbrown hover:underline font-semibold"
+            >
               Sign Up
             </Link>
           </p>

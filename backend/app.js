@@ -11,7 +11,10 @@ app.use(express.json());
 const Order = require("./routes/order");
 app.use(
   cors({
-    origin: "https://voluble-cupcake-885cc3.netlify.app",
+    origin: [
+      "https://bookcove-book-store.netlify.app",
+      "http://localhost:5173",
+    ],
     credentials: true,
   })
 );

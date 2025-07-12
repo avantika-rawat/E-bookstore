@@ -62,7 +62,7 @@ router.get("/get-all-orders", authenticationToken, async (req, res) => {
       .populate({ path: "user" })
       .sort({ createdAt: -1 });
 
-    console.log("Fetched orders:", userData); // 👈 Move this above return
+    console.log("Fetched orders:", userData); 
 
     return res.json({
       status: "success",
