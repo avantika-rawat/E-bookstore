@@ -7,7 +7,7 @@ A full-stack web application built with the MERN (MongoDB, Express, React, Node.
 [Live Demo](https://voluble-cupcake-885cc3.netlify.app/)
 
 For user demo : username - demo-user , password - 123456 <br>
-For admin demo : username - admin , password - 123456
+For admin demo : username - admin123 , password - 123456
 
 
 ## Features
