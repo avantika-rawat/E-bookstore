@@ -23,7 +23,7 @@ const AllOrders = () => {
     const fetch = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:1000/api/v1/get-all-orders",
+          "https://bookcove.onrender.com/api/v1/get-all-orders",
           { headers }
         );
         setAllOrders(res.data.data);
@@ -42,7 +42,7 @@ const AllOrders = () => {
   const submitChanges = async (i) => {
     const id = allOrders[i]._id;
     const res = await axios.put(
-      `http://localhost:1000/api/v1/update-status/${id}`,
+      `https://bookcove.onrender.com/api/v1/update-status/${id}`,
       values,
       { headers }
     );

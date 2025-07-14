@@ -55,7 +55,7 @@ const Cart = () => {
   const PlaceOrder = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:1000/api/v1/place-order`,
+        `https://bookcove.onrender.com/api/v1/place-order`,
         { order: cart },
         { headers }
       );

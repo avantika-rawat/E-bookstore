@@ -4,15 +4,11 @@ require("dotenv").config({ path: "../.env" });
 const mongoose = require("mongoose");
 const User = require("../models/user");
 
-console.log("🔍 URI from .env:", process.env.URI);
-
-// ✅ Rename function to avoid name conflict
 const seedUsers = async () => {
   try {
     await mongoose.connect(process.env.URI);
-    console.log("✅ Connected to MongoDB");
+    console.log("Connected to MongoDB");
 
-    // ✅ Define sample data
     const sampleUsers = [
       {
         username: "avantika01",
@@ -39,14 +35,14 @@ const seedUsers = async () => {
     ];
 
     await User.deleteMany(); // Optional: Clear old data
-    await User.insertMany(sampleUsers); // ✅ Use actual array here
-    console.log("✅ Users seeded successfully");
+    await User.insertMany(sampleUsers); // Use actual array here
+    console.log(" Users seeded successfully");
 
     process.exit(0);
   } catch (err) {
-    console.error("❌ Seeding failed:", err);
+    console.error("Seeding failed:", err);
     process.exit(1);
   }
 };
 
-seedUsers(); // ✅ Call the function
+seedUsers(); //Call the function
