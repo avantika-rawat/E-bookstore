@@ -35,7 +35,7 @@ For admin demo : username - admin123 , password - 123456
 - **Frontend:** React.js, Redux, Tailwind CSS  
 - **Backend:** Node.js, Express.js, MongoDB, Mongoose  
 - **Authentication:** JWT
-- **Deployment:** Render 
+- **Deployment:** Render, Netlify
 
 ## Demo screenshots
 
